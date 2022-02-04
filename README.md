@@ -50,11 +50,6 @@ func request() -> void:
 	if _att != null:
 		_att.requestTracking()
 
-func status() -> int:
-	if _att != null:
-		return _att.status()
-	return 0
-
 func _on_request_completed(status: int) -> void:
 	print_debug("request_completed", status)
 	emit_signal('request_completed', status)
