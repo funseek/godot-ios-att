@@ -1,0 +1,17 @@
+[config]
+name="Att"
+binary="att/bin/att.a"
+
+initialization="godot_att_init"
+deinitialization="godot_att_deinit"
+
+[dependencies]
+linked=[]
+embedded=[]
+system=[]
+
+capabilities=[]
+
+files=[]
+
+[plist]
