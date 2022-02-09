@@ -20,9 +20,15 @@ void Att::_bind_methods() {
 void Att::requestTracking() {
     NSLog(@"call requestTracking");
     if (@available(iOS 14, *)) {
-        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+        ATTrackingManagerAuthorizationStatus status = [ATTrackingManager trackingAuthorizationStatus];
+        if (status == ATTrackingManagerAuthorizationStatusNotDetermined) {
+            [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+                emit_signal("requestCompleted", (int)status);
+            }];
+        } else {
             emit_signal("requestCompleted", (int)status);
-        }];
+        }
+        
     } else {
         // Fallback on earlier versions
         emit_signal("requestCompleted", 3);
