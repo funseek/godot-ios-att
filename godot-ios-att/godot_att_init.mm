@@ -8,19 +8,19 @@
 #import "att.h"
 #import "core/engine.h"
 
-Att *plugin;
+Att *att_plugin;
 
 void godot_att_init() {
     NSLog(@"init Att plugin");
 
-    plugin = memnew(Att);
-    Engine::get_singleton()->add_singleton(Engine::Singleton("Att", plugin));
+    att_plugin = memnew(Att);
+    Engine::get_singleton()->add_singleton(Engine::Singleton("Att", att_plugin));
 }
 
 void godot_att_deinit() {
     NSLog(@"deinit Att plugin");
     
-    if (plugin) {
-       memdelete(plugin);
+    if (att_plugin) {
+       memdelete(att_plugin);
    }
 }
